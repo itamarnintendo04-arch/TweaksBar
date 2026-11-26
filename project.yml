@@ -11,7 +11,8 @@ targets:
     type: application
     platform: iOS
     sources:
-      - iOS/TweaksBar/**/*.swift
+      - path: iOS/TweaksBar/DeviceDiscovery.swift
+      - path: iOS/TweaksBar/TweaksBarApp.swift
     info:
       properties:
         CFBundleDisplayName: TweaksBar
@@ -31,9 +32,18 @@ targets:
     type: application
     platform: iOS
     sources:
-      - iOS/TweaksSettings/**/*.swift
-      - iOS/TweaksSettings/compatibility-catalog.json
-      - iOS/TweaksSettings/Assets.xcassets
+      - path: iOS/TweaksSettings/CompatibilityCatalogService.swift
+      - path: iOS/TweaksSettings/DeviceCompatibility.swift
+      - path: iOS/TweaksSettings/JailbreakCompatibility.swift
+      - path: iOS/TweaksSettings/TweaksEngineDiscovery.swift
+      - path: iOS/TweaksSettings/TweaksSettingsApp.swift
+      - path: iOS/TweaksSettings/Views/CustomizeSettingsView.swift
+      - path: iOS/TweaksSettings/Views/EngineConnectionView.swift
+      - path: iOS/TweaksSettings/Views/PosterBoardSettingsView.swift
+      - path: iOS/TweaksSettings/Views/TweaksSettingsRootView.swift
+      - path: iOS/TweaksSettings/compatibility-catalog.json
+      - path: iOS/TweaksSettings/Assets.xcassets
+        type: folder
     info:
       properties:
         CFBundleDisplayName: TweaksSettings
