@@ -7,5 +7,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>TweaksBar</AssemblyName>
     <RootNamespace>TweaksBar.Client</RootNamespace>
+    <ApplicationIcon Condition="Exists('Assets\TweaksBar.ico')">Assets\TweaksBar.ico</ApplicationIcon>
   </PropertyGroup>
 </Project>
