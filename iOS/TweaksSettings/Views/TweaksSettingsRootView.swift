@@ -34,9 +34,10 @@ private struct SettingsHomeView: View {
                 VStack(alignment: .leading, spacing: 22) {
                     header
                     deviceCard
+                    EngineConnectionView()
                     HStack(spacing: 12) {
-                        statusTile(title: "Tweak Engine", value: "Not connected", icon: "cpu", tint: .orange)
                         statusTile(title: "Compatibility", value: "Checking catalog", icon: "checkmark.shield", tint: TweaksPalette.cyan)
+                        statusTile(title: "System Changes", value: "Disabled", icon: "lock.shield", tint: .orange)
                     }
                     VStack(alignment: .leading, spacing: 12) {
                         sectionHeading("Explore", subtitle: "Your customization workspace")
