@@ -142,6 +142,7 @@ private struct SettingsHomeView: View {
 
 private struct CompatibilityView: View {
     private let device = DeviceCompatibility.current
+    @StateObject private var catalog = CompatibilityCatalogService()
 
     var body: some View {
         NavigationStack {
@@ -153,15 +154,37 @@ private struct CompatibilityView: View {
                 }
 
                 Section("Jailbreak compatibility") {
-                    let matches = JailbreakCompatibilityCatalog.entries(
-                        for: "unknown",
-                        iosVersion: device.systemVersion
-                    )
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(catalog.status)
+                                .font(.subheadline)
+                            if let updated = catalog.lastUpdated {
+                                Text("Catalog date: \\(updated)")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        Spacer()
+                        Button {
+                            Task { await catalog.refresh() }
+                        } label: {
+                            if catalog.isLoading {
+                                ProgressView()
+                            } else {
+                                Label("Refresh", systemImage: "arrow.clockwise")
+                            }
+                        }
+                        .disabled(catalog.isLoading)
+                    }
+
+                    let matches = catalog.entries.filter {
+                        $0.matches(deviceIdentifier: "unknown", iosVersion: device.systemVersion)
+                    }
 
                     if matches.isEmpty {
-                        Label("No verified jailbreak entries", systemImage: "exclamationmark.shield")
+                        Label("No verified entries for this device", systemImage: "exclamationmark.shield")
                             .foregroundStyle(.orange)
-                        Text("There are currently no catalog records verified for this device and iOS version. This does not mean that no jailbreak exists; it means TweaksSettings does not yet have reliable compatibility evidence.")
+                        Text("No exact device match is available yet. This does not prove that no jailbreak exists; it means the catalog has no verified record for this device.")
                             .font(.footnote)
                             .foregroundStyle(.secondary)
                     } else {
@@ -201,6 +224,9 @@ private struct CompatibilityView: View {
                 }
             }
             .navigationTitle("Compatibility")
+        }
+        .task {
+            await catalog.refresh()
         }
     }
 }
