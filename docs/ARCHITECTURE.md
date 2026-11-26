@@ -16,6 +16,12 @@ The iPhone app requests Local Network access when the user starts device discove
 ### Device bridge
 The bridge will use a documented, versioned protocol. Before any pairing data is exchanged, the user must approve a pairing request. The eventual transport must use authenticated TLS and short-lived pairing credentials.
 
+
+### TweaksSettings iPhone app
+TweaksSettings is a separate SwiftUI app target intended to be the mobile customization dashboard. Its initial screens show the installed iOS version, a conservative compatibility status, and the PosterBoard integration state. The current implementation is a UI and diagnostics foundation only: it does not apply system changes, install system components, or verify privileged modification access.
+
+Compatibility entries must be independently tested against the exact device model and iOS build before being marked supported. A normal iOS app cannot reliably infer every modified-system state from inside its sandbox.
+
 ## Apple driver setup
 
 TweaksBar checks for Apple Mobile Device Support and Apple Mobile Device Service. If they are missing, the UI directs the user to Apple's official installation instructions. The installer must not download drivers from third-party mirrors or install software without user consent.
