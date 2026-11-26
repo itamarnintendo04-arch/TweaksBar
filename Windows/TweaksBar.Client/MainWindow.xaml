@@ -44,11 +44,8 @@
             <DockPanel LastChildFill="True">
                 <StackPanel DockPanel.Dock="Top">
                     <StackPanel Orientation="Horizontal" Margin="2,5,0,34">
-                        <Border Width="43" Height="43" CornerRadius="13" Background="#276BE4">
-                            <Grid>
-                                <TextBlock Text="T" FontSize="26" FontWeight="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <Ellipse Width="8" Height="8" Fill="#8FC4FF" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,7,7,0"/>
-                            </Grid>
+                        <Border Width="48" Height="48" CornerRadius="14" Background="#071744" ClipToBounds="True">
+                            <Image Source="Assets/TweaksBar.png" Stretch="UniformToFill"/>
                         </Border>
                         <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
                             <TextBlock Text="TweaksBar" FontSize="19" FontWeight="Bold" Foreground="#F5F8FF"/>
@@ -70,7 +67,7 @@
                         <TextBlock Text="Connect your iPhone by USB and trust this computer to get started." FontSize="11" Foreground="#A8B8CE" TextWrapping="Wrap" Margin="0,9,0,0" LineHeight="17"/>
                     </StackPanel>
                 </Border>
-                <TextBlock DockPanel.Dock="Bottom" Text="TweaksBar Preview  •  0.2.0" Foreground="#56667D" FontSize="10" Margin="3,14,0,0"/>
+                <TextBlock DockPanel.Dock="Bottom" Text="TweaksBar  •  0.3.0" Foreground="#56667D" FontSize="10" Margin="3,14,0,0"/>
             </DockPanel>
         </Border>
 
@@ -162,7 +159,10 @@
                                         <TextBlock Text="⇧" FontSize="34" Foreground="#72A9FF" HorizontalAlignment="Center"/>
                                         <TextBlock Text="Choose an IPA or ZIP package" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,8,0,4"/>
                                         <TextBlock Text="or browse your computer" Style="{StaticResource MutedText}" HorizontalAlignment="Center"/>
-                                        <Button Content="Browse files" Style="{StaticResource PrimaryButton}" Margin="0,16,0,0" Click="BrowsePackageButton_Click"/>
+                                        <WrapPanel HorizontalAlignment="Center" Margin="0,16,0,0">
+                                            <Button Content="Browse IPA / ZIP" Style="{StaticResource PrimaryButton}" Margin="0,0,8,0" Click="BrowsePackageButton_Click"/>
+                                            <Button Content="Get latest Release" Style="{StaticResource SecondaryButton}" Click="DownloadLatestReleaseButton_Click"/>
+                                        </WrapPanel>
                                     </StackPanel>
                                 </Border>
                                 <TextBlock x:Name="ImportStatus" Text="No package imported yet." Style="{StaticResource MutedText}" Margin="0,14,0,0"/>
@@ -180,7 +180,7 @@
                                     <TextBlock x:Name="SelectedPackageStatus" Text="Select a package to see its status." Style="{StaticResource MutedText}" VerticalAlignment="Center"/>
                                     <Button Grid.Column="1" Content="Install to iPhone" Style="{StaticResource PrimaryButton}" IsEnabled="False" x:Name="InstallButton" Click="InstallButton_Click"/>
                                 </Grid>
-                                <TextBlock Text="Installation is not active in this preview: Apple signing and the device installation bridge are not yet connected." Foreground="#E6BD76" FontSize="11" TextWrapping="Wrap" Margin="0,13,0,0"/>
+                                <TextBlock Text="Packages are validated and extracted locally. Signing and USB installation are shown as unavailable until a secure, supported Apple signing bridge is integrated." Foreground="#E6BD76" FontSize="11" TextWrapping="Wrap" Margin="0,13,0,0"/>
                             </StackPanel>
                         </Border>
                     </StackPanel>
@@ -197,7 +197,8 @@
                                     <StackPanel>
                                         <TextBlock Text="USB DEVICE" Foreground="#7186A3" FontSize="10" FontWeight="Bold"/>
                                         <TextBlock x:Name="ConnectionStatus" Text="No device has been verified." FontSize="16" FontWeight="SemiBold" Margin="0,7,0,4"/>
-                                        <TextBlock Text="This preview checks Apple support components. It does not yet enumerate connected iPhones." Style="{StaticResource MutedText}"/>
+                                        <TextBlock Text="Device detection checks Windows Plug and Play entries. A trusted USB connection and Apple's device support components are required." Style="{StaticResource MutedText}" Margin="0,0,0,12"/>
+                                        <Button x:Name="RefreshDeviceButton" Content="Refresh USB device" Style="{StaticResource SecondaryButton}" HorizontalAlignment="Left" Click="RefreshDeviceButton_Click"/>
                                     </StackPanel>
                                 </Border>
                             </StackPanel>
@@ -225,7 +226,7 @@
                             <StackPanel>
                                 <TextBlock Text="Application" Style="{StaticResource SectionTitle}"/>
                                 <TextBlock Text="TweaksBar desktop preview" Foreground="#E6EDF8" FontWeight="SemiBold" Margin="0,18,0,4"/>
-                                <TextBlock Text="Version 0.2.0 · Windows x64" Style="{StaticResource MutedText}"/>
+                                <TextBlock Text="Version 0.3.0 · Windows x64" Style="{StaticResource MutedText}"/>
                                 <TextBlock Text="Package storage" Foreground="#E6EDF8" FontWeight="SemiBold" Margin="0,18,0,4"/>
                                 <TextBlock Text="Imported IPA packages are stored under your local application data folder." Style="{StaticResource MutedText}"/>
                             </StackPanel>
