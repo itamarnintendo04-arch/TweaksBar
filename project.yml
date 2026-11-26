@@ -13,6 +13,8 @@ targets:
     sources:
       - path: iOS/TweaksBar/DeviceDiscovery.swift
       - path: iOS/TweaksBar/TweaksBarApp.swift
+      - path: iOS/TweaksBar/Assets.xcassets
+        type: folder
     info:
       path: iOS/TweaksBar/Info-Additions.plist
       properties:
@@ -24,6 +26,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: net.itamaros.tweaksbar
         PRODUCT_NAME: TweaksBar
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         GENERATE_INFOPLIST_FILE: YES
         SWIFT_VERSION: "5.0"
         TARGETED_DEVICE_FAMILY: "1,2"
