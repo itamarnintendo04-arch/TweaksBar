@@ -12,7 +12,7 @@ TweaksBar is a Windows + iPhone companion project for managing iPhone customizat
 
 ## Important compatibility note
 
-The current release is a **desktop package-management preview**. The Windows app includes a redesigned dashboard, Apple driver checks, setup guidance, and an IPA/ZIP importer that extracts IPA files into a local package library. USB device enumeration, Apple ID signing, and device installation are not yet implemented. It does not jailbreak iOS, inject code into SpringBoard, install system tweaks, or bypass iOS security. No support for iOS 27.3 beta 2 is claimed yet.
+The Windows app includes a redesigned desktop workspace, a release downloader, IPA/ZIP import and archive validation, local package storage, Apple driver checks, and Windows Plug and Play-based iPhone detection. The iPhone companion includes a redesigned local-network discovery interface. Apple ID signing and direct USB installation are not yet implemented; the install action remains disabled until a supported signing and installation integration is available. The app does not jailbreak iOS, inject code into SpringBoard, install system tweaks, or bypass iOS security. No support for a specific beta iOS build is claimed unless it appears in the verified compatibility catalog.
 
 ## Repository layout
 
@@ -66,5 +66,5 @@ In Xcode, select the **TweaksSettings** scheme to build or run TweaksSettings, o
 
 The `TweaksSettings` target uses `iOS/TweaksSettings/Build/TweaksSettings.xcconfig`, which sets the app icon asset name to `AppIcon`.
 
-A macOS GitHub Actions workflow builds both schemes for the iOS Simulator. A successful simulator build does not mean that privileged iOS modifications or jailbreak integrations are supported; those remain separately unverified.
+The macOS GitHub Actions workflows build both schemes for generic iOS devices and package unsigned IPA archives. These IPAs are not directly installable until signed with a valid Apple provisioning profile. A successful device build does not mean that privileged iOS modifications or jailbreak integrations are supported; those remain separately unverified.
 \n## Windows desktop preview\n\nThe Windows client has four sections: Overview, Install IPA, Device support, and Settings. The package importer accepts a standalone `.ipa` or a ZIP containing IPA files at its root, and copies/imports those packages into the current user's local TweaksBar package folder. The install button remains disabled until Apple signing and the USB installation bridge are implemented and tested.\n
