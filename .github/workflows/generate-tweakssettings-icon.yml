@@ -17,16 +17,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Convert SVG to 1024px PNG
         run: |
-          python3 -m pip install --user cairosvg
-          python3 - <<'PY'
-          import cairosvg
-          cairosvg.svg2png(
-              url="iOS/TweaksSettings/Assets.xcassets/AppIcon.appiconset/AppIcon.svg",
-              write_to="iOS/TweaksSettings/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
-              output_width=1024,
-              output_height=1024
-          )
-          PY
+          brew install librsvg
+          rsvg-convert -w 1024 -h 1024 \
+            -o iOS/TweaksSettings/Assets.xcassets/AppIcon.appiconset/AppIcon.png \
+            iOS/TweaksSettings/Assets.xcassets/AppIcon.appiconset/AppIcon.svg
       - name: Commit generated icon
         run: |
           if git diff --quiet -- iOS/TweaksSettings/Assets.xcassets/AppIcon.appiconset/AppIcon.png; then
