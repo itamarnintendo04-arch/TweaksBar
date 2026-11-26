@@ -22,6 +22,13 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "10.0.x"
+      - name: Install ImageMagick
+        run: choco install imagemagick.app -y --no-progress
+      - name: Generate Windows app icon
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path Windows/TweaksBar.Client/Assets | Out-Null
+          magick Windows/TweaksBar.Client/Assets/TweaksBar.svg -define icon:auto-resize=256,128,64,48,32,16 Windows/TweaksBar.Client/Assets/TweaksBar.ico
       - name: Publish Windows x64
         run: dotnet publish .\Windows\TweaksBar.Client\TweaksBar.Client.csproj --configuration Release --runtime win-x64 --self-contained false -p:PublishSingleFile=true -o artifacts\windows
       - name: Package Windows build
