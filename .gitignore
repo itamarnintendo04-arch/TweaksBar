@@ -1,0 +1,16 @@
+# .NET
+**/bin/
+**/obj/
+.vs/
+*.user
+*.suo
+
+# Apple / Xcode
+.DS_Store
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcuserdatad/
+
+# Build outputs
+artifacts/
