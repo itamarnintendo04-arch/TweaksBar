@@ -40,7 +40,7 @@
                         <TextBlock Text="T" FontSize="27" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <TextBlock Text="TweaksBar" FontSize="21" FontWeight="Bold" Margin="0,13,0,3"/>
-                    <TextBlock Text="DEVICE CONTROL CENTER" FontSize="9" Foreground="#7E8BA0" FontWeight="Bold" CharacterSpacing="110"/>
+                    <TextBlock Text="DEVICE CONTROL CENTER" FontSize="9" Foreground="#7E8BA0" FontWeight="Bold"/>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Text="WORKSPACE" Foreground="#718096" FontSize="10" FontWeight="Bold" Margin="8,0,0,10"/>
