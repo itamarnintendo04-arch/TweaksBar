@@ -1,0 +1,40 @@
+name: Generate TweaksSettings App Icon
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "iOS/TweaksSettings/Assets.xcassets/AppIcon.appiconset/AppIcon.svg"
+      - ".github/workflows/generate-tweakssettings-icon.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Convert SVG to 1024px PNG
+        run: |
+          python3 -m pip install --user cairosvg
+          python3 - <<'PY'
+          import cairosvg
+          cairosvg.svg2png(
+              url="iOS/TweaksSettings/Assets.xcassets/AppIcon.appiconset/AppIcon.svg",
+              write_to="iOS/TweaksSettings/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
+              output_width=1024,
+              output_height=1024
+          )
+          PY
+      - name: Commit generated icon
+        run: |
+          if git diff --quiet -- iOS/TweaksSettings/Assets.xcassets/AppIcon.appiconset/AppIcon.png; then
+            echo "Icon is already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add iOS/TweaksSettings/Assets.xcassets/AppIcon.appiconset/AppIcon.png
+          git commit -m "Generate TweaksSettings AppIcon PNG"
+          git push
