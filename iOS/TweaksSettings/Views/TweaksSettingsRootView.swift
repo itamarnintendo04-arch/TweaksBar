@@ -178,7 +178,7 @@ private struct CompatibilityView: View {
                     }
 
                     let matches = catalog.entries.filter {
-                        $0.matches(deviceIdentifier: "unknown", iosVersion: device.systemVersion)
+                        $0.matches(deviceIdentifier: device.modelIdentifier, iosVersion: device.systemVersion)
                     }
 
                     if matches.isEmpty {
