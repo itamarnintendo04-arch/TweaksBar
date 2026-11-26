@@ -12,7 +12,7 @@ TweaksBar is a Windows + iPhone companion project for managing iPhone customizat
 
 ## Important compatibility note
 
-The initial release is a **connection and diagnostics prototype**. It does not jailbreak iOS, inject code into SpringBoard, install system tweaks, or bypass iOS security. Those capabilities require a separately verified, compatible mechanism. No support for iOS 27.3 beta 2 is claimed yet.
+The current release is a **desktop package-management preview**. The Windows app includes a redesigned dashboard, Apple driver checks, setup guidance, and an IPA/ZIP importer that extracts IPA files into a local package library. USB device enumeration, Apple ID signing, and device installation are not yet implemented. It does not jailbreak iOS, inject code into SpringBoard, install system tweaks, or bypass iOS security. No support for iOS 27.3 beta 2 is claimed yet.
 
 ## Repository layout
 
@@ -67,3 +67,4 @@ In Xcode, select the **TweaksSettings** scheme to build or run TweaksSettings, o
 The `TweaksSettings` target uses `iOS/TweaksSettings/Build/TweaksSettings.xcconfig`, which sets the app icon asset name to `AppIcon`.
 
 A macOS GitHub Actions workflow builds both schemes for the iOS Simulator. A successful simulator build does not mean that privileged iOS modifications or jailbreak integrations are supported; those remain separately unverified.
+\n## Windows desktop preview\n\nThe Windows client has four sections: Overview, Install IPA, Device support, and Settings. The package importer accepts a standalone `.ipa` or a ZIP containing IPA files at its root, and copies/imports those packages into the current user's local TweaksBar package folder. The install button remains disabled until Apple signing and the USB installation bridge are implemented and tested.\n
