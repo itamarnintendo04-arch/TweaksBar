@@ -17,7 +17,8 @@ The initial release is a **connection and diagnostics prototype**. It does not j
 ## Repository layout
 
 - `Windows/TweaksBar.Client` — WPF desktop application (.NET 10).
-- `iOS/TweaksBar` — SwiftUI companion app source.
+- `iOS/TweaksBar` — SwiftUI desktop-pairing companion app source.
+- `iOS/TweaksSettings` — separate SwiftUI mobile settings app with device-version display, compatibility status, and a PosterBoard integration page.
 - `docs/ARCHITECTURE.md` — system design and security boundaries.
 
 ## Development
