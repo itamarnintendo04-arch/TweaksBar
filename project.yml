@@ -14,6 +14,7 @@ targets:
       - path: iOS/TweaksBar/DeviceDiscovery.swift
       - path: iOS/TweaksBar/TweaksBarApp.swift
     info:
+      path: iOS/TweaksBar/Info-Additions.plist
       properties:
         CFBundleDisplayName: TweaksBar
         NSLocalNetworkUsageDescription: "TweaksBar uses your local network to discover and connect to your Windows PC."
@@ -45,6 +46,7 @@ targets:
       - path: iOS/TweaksSettings/Assets.xcassets
         type: folder
     info:
+      path: iOS/TweaksSettings/Info-Additions.plist
       properties:
         CFBundleDisplayName: TweaksSettings
         NSLocalNetworkUsageDescription: "TweaksSettings uses your local network to discover a TweaksBar engine on your trusted network."
