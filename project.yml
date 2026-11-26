@@ -51,9 +51,6 @@ targets:
         SWIFT_VERSION: "5.0"
         TARGETED_DEVICE_FAMILY: "1,2"
         IPHONEOS_DEPLOYMENT_TARGET: "17.0"
-    configFiles:
-      Debug: iOS/TweaksSettings/Build/TweaksSettings.xcconfig
-      Release: iOS/TweaksSettings/Build/TweaksSettings.xcconfig
 
 schemes:
   TweaksBar:
