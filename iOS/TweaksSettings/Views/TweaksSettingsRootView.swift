@@ -152,21 +152,46 @@ private struct CompatibilityView: View {
                     LabeledContent("Version", value: device.systemVersion)
                 }
 
-                Section("Modification support") {
-                    HStack {
-                        Label("Environment status", systemImage: "questionmark.circle")
-                        Spacer()
-                        Text(device.modificationEnvironmentStatus)
+                Section("Jailbreak compatibility") {
+                    let matches = JailbreakCompatibilityCatalog.entries(
+                        for: "unknown",
+                        iosVersion: device.systemVersion
+                    )
+
+                    if matches.isEmpty {
+                        Label("No verified jailbreak entries", systemImage: "exclamationmark.shield")
                             .foregroundStyle(.orange)
-                    }
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text("Compatibility catalog")
-                            .font(.headline)
-                        Text(device.catalogStatus)
-                            .font(.subheadline)
+                        Text("There are currently no catalog records verified for this device and iOS version. This does not mean that no jailbreak exists; it means TweaksSettings does not yet have reliable compatibility evidence.")
+                            .font(.footnote)
                             .foregroundStyle(.secondary)
+                    } else {
+                        ForEach(matches) { entry in
+                            VStack(alignment: .leading, spacing: 5) {
+                                HStack {
+                                    Text(entry.name).font(.headline)
+                                    Spacer()
+                                    Text(entry.verification.displayName)
+                                        .font(.caption)
+                                        .foregroundStyle(entry.verification == .verified ? .green : .orange)
+                                }
+                                Text(entry.notes)
+                                    .font(.footnote)
+                                    .foregroundStyle(.secondary)
+                                if let sourceURL = entry.sourceURL {
+                                    Link(entry.sourceName ?? "Compatibility source", destination: sourceURL)
+                                        .font(.footnote)
+                                }
+                            }
+                            .padding(.vertical, 3)
+                        }
                     }
-                    .padding(.vertical, 4)
+                }
+
+                Section("Environment detection") {
+                    LabeledContent("Jailbreak state", value: device.modificationEnvironmentStatus)
+                    Text("A regular iOS app cannot reliably confirm every jailbreak state. Catalog compatibility and on-device environment detection are tracked separately.")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
                 }
 
                 Section {
