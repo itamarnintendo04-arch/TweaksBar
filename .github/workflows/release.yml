@@ -28,6 +28,7 @@ jobs:
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force -Path Windows/TweaksBar.Client/Assets | Out-Null
+          magick Windows/TweaksBar.Client/Assets/TweaksBar.svg -resize 1024x1024 Windows/TweaksBar.Client/Assets/TweaksBar.png
           magick Windows/TweaksBar.Client/Assets/TweaksBar.svg -define icon:auto-resize=256,128,64,48,32,16 Windows/TweaksBar.Client/Assets/TweaksBar.ico
       - name: Publish Windows x64
         run: dotnet publish .\Windows\TweaksBar.Client\TweaksBar.Client.csproj --configuration Release --runtime win-x64 --self-contained false -p:PublishSingleFile=true -o artifacts\windows
@@ -50,6 +51,9 @@ jobs:
           rsvg-convert -w 1024 -h 1024 \
             -o iOS/TweaksSettings/Assets.xcassets/AppIcon.appiconset/AppIcon.png \
             iOS/TweaksSettings/Assets.xcassets/AppIcon.appiconset/AppIcon.svg
+          rsvg-convert -w 1024 -h 1024 \\
+            -o iOS/TweaksBar/Assets.xcassets/AppIcon.appiconset/AppIcon.png \\
+            iOS/TweaksBar/Assets.xcassets/AppIcon.appiconset/AppIcon.svg
       - name: Generate Xcode project
         run: xcodegen generate
       - name: Build TweaksSettings for iPhone and iPad
