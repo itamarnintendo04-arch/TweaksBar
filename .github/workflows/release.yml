@@ -32,7 +32,7 @@ jobs:
           path: TweaksBar-Windows-x64.zip
 
   ios:
-    name: Build iOS apps
+    name: Build unsigned iOS device IPAs
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
@@ -45,28 +45,39 @@ jobs:
             iOS/TweaksSettings/Assets.xcassets/AppIcon.appiconset/AppIcon.svg
       - name: Generate Xcode project
         run: xcodegen generate
-      - name: Build TweaksSettings for iOS Simulator
+      - name: Build TweaksSettings for iPhone and iPad
         run: |
           xcodebuild -project TweaksBar.xcodeproj -scheme TweaksSettings \
-            -sdk iphonesimulator -configuration Release \
-            -destination 'generic/platform=iOS Simulator' \
-            CODE_SIGNING_ALLOWED=NO build
-      - name: Build TweaksBar for iOS Simulator
+            -sdk iphoneos -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build/DerivedData \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO build
+      - name: Build TweaksBar for iPhone and iPad
         run: |
           xcodebuild -project TweaksBar.xcodeproj -scheme TweaksBar \
-            -sdk iphonesimulator -configuration Release \
-            -destination 'generic/platform=iOS Simulator' \
-            CODE_SIGNING_ALLOWED=NO build
-      - name: Package simulator builds
+            -sdk iphoneos -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build/DerivedData \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO build
+      - name: Package unsigned IPA files
         run: |
+          set -euo pipefail
           mkdir -p artifacts/ios
-          ditto "$(xcodebuild -project TweaksBar.xcodeproj -scheme TweaksSettings -sdk iphonesimulator -configuration Release -showBuildSettings 2>/dev/null | awk -F ' = ' '/ TARGET_BUILD_DIR = / {print $2; exit}')/TweaksSettings.app" artifacts/ios/TweaksSettings.app
-          ditto "$(xcodebuild -project TweaksBar.xcodeproj -scheme TweaksBar -sdk iphonesimulator -configuration Release -showBuildSettings 2>/dev/null | awk -F ' = ' '/ TARGET_BUILD_DIR = / {print $2; exit}')/TweaksBar.app" artifacts/ios/TweaksBar.app
-          cd artifacts/ios && zip -r ../../TweaksBar-iOS-Simulator.zip TweaksSettings.app TweaksBar.app
+          for app in TweaksSettings TweaksBar; do
+            APP_PATH="build/DerivedData/Build/Products/Release-iphoneos/${app}.app"
+            test -d "$APP_PATH"
+            PACKAGE_DIR="$(mktemp -d)"
+            mkdir -p "$PACKAGE_DIR/Payload"
+            ditto "$APP_PATH" "$PACKAGE_DIR/Payload/${app}.app"
+            (cd "$PACKAGE_DIR" && zip -qr "$GITHUB_WORKSPACE/artifacts/ios/${app}.ipa" Payload)
+            rm -rf "$PACKAGE_DIR"
+          done
+          cd artifacts/ios
+          zip -q TweaksBar-iOS-IPAs.zip TweaksSettings.ipa TweaksBar.ipa
       - uses: actions/upload-artifact@v4
         with:
-          name: TweaksBar-iOS-Simulator
-          path: TweaksBar-iOS-Simulator.zip
+          name: TweaksBar-iOS-IPAs
+          path: artifacts/ios/TweaksBar-iOS-IPAs.zip
 
   release:
     name: Publish GitHub Release
@@ -76,6 +87,13 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           path: release-assets
+      - name: Extract IPA files for direct release downloads
+        run: |
+          set -euo pipefail
+          mkdir -p release-assets/extracted-ios
+          unzip -q release-assets/TweaksBar-iOS-IPAs/TweaksBar-iOS-IPAs.zip -d release-assets/extracted-ios
+          test -f release-assets/extracted-ios/TweaksSettings.ipa
+          test -f release-assets/extracted-ios/TweaksBar.ipa
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
@@ -85,4 +103,5 @@ jobs:
           generate_release_notes: true
           files: |
             release-assets/TweaksBar-Windows-x64/TweaksBar-Windows-x64.zip
-            release-assets/TweaksBar-iOS-Simulator/TweaksBar-iOS-Simulator.zip
+            release-assets/extracted-ios/TweaksSettings.ipa
+            release-assets/extracted-ios/TweaksBar.ipa
