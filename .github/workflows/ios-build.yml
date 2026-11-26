@@ -36,13 +36,13 @@ jobs:
       - name: Generate Xcode project
         run: xcodegen generate
 
-      - name: Build TweaksSettings for iOS Simulator
+      - name: Build TweaksSettings for iOS device
         run: |
           xcodebuild -project TweaksBar.xcodeproj \
             -scheme TweaksSettings \
-            -sdk iphonesimulator \
+            -sdk iphoneos \
             -configuration Debug \
-            -destination 'generic/platform=iOS Simulator' \
+            -destination 'generic/platform=iOS' \
             CODE_SIGNING_ALLOWED=NO build
 
       - name: Build TweaksBar for iOS Simulator
