@@ -3,11 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Color x:Key="WindowBackground">#0B0D12</Color>
-        <Color x:Key="PanelBackground">#151923</Color>
-        <Color x:Key="AccentColor">#8B5CF6</Color>
-        <SolidColorBrush x:Key="WindowBrush" Color="{StaticResource WindowBackground}" />
-        <SolidColorBrush x:Key="PanelBrush" Color="{StaticResource PanelBackground}" />
-        <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
+        <FontFamily x:Key="AppFont">Segoe UI</FontFamily>
+        <Color x:Key="WindowBackground">#080D18</Color>
+        <Color x:Key="PanelBackground">#101827</Color>
+        <Color x:Key="AccentColor">#397CF2</Color>
+        <SolidColorBrush x:Key="WindowBrush" Color="{StaticResource WindowBackground}"/>
+        <SolidColorBrush x:Key="PanelBrush" Color="{StaticResource PanelBackground}"/>
+        <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
     </Application.Resources>
 </Application>
