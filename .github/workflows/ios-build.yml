@@ -1,0 +1,55 @@
+name: iOS Build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "iOS/**"
+      - "project.yml"
+      - ".github/workflows/ios-build.yml"
+  pull_request:
+    paths:
+      - "iOS/**"
+      - "project.yml"
+      - ".github/workflows/ios-build.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XcodeGen and librsvg
+        run: |
+          brew install xcodegen librsvg
+
+      - name: Generate AppIcon PNG
+        run: |
+          rsvg-convert -w 1024 -h 1024 \
+            -o iOS/TweaksSettings/Assets.xcassets/AppIcon.appiconset/AppIcon.png \
+            iOS/TweaksSettings/Assets.xcassets/AppIcon.appiconset/AppIcon.svg
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Build TweaksSettings for iOS Simulator
+        run: |
+          xcodebuild -project TweaksBar.xcodeproj \
+            -scheme TweaksSettings \
+            -sdk iphonesimulator \
+            -configuration Debug \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO build
+
+      - name: Build TweaksBar for iOS Simulator
+        run: |
+          xcodebuild -project TweaksBar.xcodeproj \
+            -scheme TweaksBar \
+            -sdk iphonesimulator \
+            -configuration Debug \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO build
