@@ -139,7 +139,7 @@
                                     <TextBlock Text="Built for a clear workflow" Style="{StaticResource SectionTitle}"/>
                                     <TextBlock Text="Package handling" Foreground="#E6EDF8" FontWeight="SemiBold" Margin="0,15,0,4"/>
                                     <TextBlock Text="Import IPA files directly or extract IPA packages from ZIP releases." Style="{StaticResource MutedText}"/>
-                                    <TextBlock Text="Signing & installation" Foreground="#E6EDF8" FontWeight="SemiBold" Margin="0,13,0,4"/>
+                                    <TextBlock Text="Signing &amp; installation" Foreground="#E6EDF8" FontWeight="SemiBold" Margin="0,13,0,4"/>
                                     <TextBlock Text="Device installation will be enabled after the Apple signing and USB install bridge is integrated." Style="{StaticResource MutedText}"/>
                                 </StackPanel>
                             </Border>
@@ -233,7 +233,7 @@
                         </Border>
                         <Border Style="{StaticResource Card}">
                             <StackPanel>
-                                <TextBlock Text="Security & compatibility" Style="{StaticResource SectionTitle}"/>
+                                <TextBlock Text="Security &amp; compatibility" Style="{StaticResource SectionTitle}"/>
                                 <TextBlock Text="TweaksBar does not request or store your Apple ID password. A secure Apple signing flow will be integrated separately." Style="{StaticResource MutedText}" Margin="0,10,0,0"/>
                                 <TextBlock Text="No jailbreak, exploit, or iOS system modification is performed by this preview." Style="{StaticResource MutedText}" Margin="0,8,0,0"/>
                             </StackPanel>
