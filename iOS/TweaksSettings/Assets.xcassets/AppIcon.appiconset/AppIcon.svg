@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#24B8FF"/>
+      <stop offset=".48" stop-color="#0878F9"/>
+      <stop offset="1" stop-color="#0739B8"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".32"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dy="14"/>
+      <feComponentTransfer><feFuncA type="linear" slope=".25"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect x="24" y="24" width="976" height="976" rx="218" fill="url(#bg)"/>
+  <path d="M242 70h540c95 0 172 77 172 172v110C784 218 548 130 310 205 190 243 94 319 24 411V242C24 147 147 70 242 70Z" fill="url(#shine)"/>
+  <g filter="url(#shadow)" transform="translate(512 512)">
+    <path d="M0-320 76-281 160-299 202-225 289-196 286-108 350-48 319 36 350 120 286 180 289 268 202 297 160 371 76 353 0 392-76 353-160 371-202 297-289 268-286 180-350 120-319 36-350-48-286-108-289-196-202-225-160-299-76-281Z" fill="#F8FBFF"/>
+    <circle r="183" fill="#0B57D7"/>
+    <circle r="143" fill="url(#bg)" opacity=".55"/>
+  </g>
+  <g filter="url(#shadow)" transform="rotate(43 512 512)">
+    <path d="M465 195h94v390h-94z" fill="#FFFFFF"/>
+    <path d="M448 170h128v82H448z" rx="18" fill="#FFFFFF"/>
+    <path d="M465 580h94l-47 264z" fill="#FFFFFF"/>
+    <path d="M472 205h80v16h-80z" fill="#D9E9FF" opacity=".8"/>
+  </g>
+  <rect x="25" y="25" width="974" height="974" rx="217" fill="none" stroke="#8DE4FF" stroke-opacity=".6" stroke-width="7"/>
+</svg>
