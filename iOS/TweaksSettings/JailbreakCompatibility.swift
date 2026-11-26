@@ -25,7 +25,7 @@ struct JailbreakCompatibilityEntry: Identifiable, Codable {
     let verification: CompatibilityVerification
     let lastVerified: String?
     let sourceName: String?
-    let sourceURL: URL?
+    var sourceURL: URL?
     let notes: String
 
     func matches(deviceIdentifier: String, iosVersion: String) -> Bool {
