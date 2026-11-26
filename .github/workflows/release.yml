@@ -51,8 +51,8 @@ jobs:
           rsvg-convert -w 1024 -h 1024 \
             -o iOS/TweaksSettings/Assets.xcassets/AppIcon.appiconset/AppIcon.png \
             iOS/TweaksSettings/Assets.xcassets/AppIcon.appiconset/AppIcon.svg
-          rsvg-convert -w 1024 -h 1024 \\
-            -o iOS/TweaksBar/Assets.xcassets/AppIcon.appiconset/AppIcon.png \\
+          rsvg-convert -w 1024 -h 1024 \
+            -o iOS/TweaksBar/Assets.xcassets/AppIcon.appiconset/AppIcon.png \
             iOS/TweaksBar/Assets.xcassets/AppIcon.appiconset/AppIcon.svg
       - name: Generate Xcode project
         run: xcodegen generate
