@@ -160,7 +160,7 @@
                                 <Border BorderBrush="#304765" BorderThickness="1" Background="#0C1421" CornerRadius="14" Padding="22">
                                     <StackPanel HorizontalAlignment="Center">
                                         <TextBlock Text="⇧" FontSize="34" Foreground="#72A9FF" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="Drop an IPA or ZIP here" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,8,0,4"/>
+                                        <TextBlock Text="Choose an IPA or ZIP package" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,8,0,4"/>
                                         <TextBlock Text="or browse your computer" Style="{StaticResource MutedText}" HorizontalAlignment="Center"/>
                                         <Button Content="Browse files" Style="{StaticResource PrimaryButton}" Margin="0,16,0,0" Click="BrowsePackageButton_Click"/>
                                     </StackPanel>
