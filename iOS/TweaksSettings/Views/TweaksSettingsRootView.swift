@@ -49,7 +49,7 @@ private struct SettingsHomeView: View {
                         NavigationLink { PosterBoardSettingsView() } label: {
                             destinationCard(title: "PosterBoard Studio", subtitle: "Wallpaper and PosterBoard integration", icon: "rectangle.stack.fill", accent: Color.purple)
                         }.buttonStyle(.plain)
-                        NavigationLink { CustomizeSettingsView() } label {
+                        NavigationLink { CustomizeSettingsView() } label: {
                             destinationCard(title: "Customize", subtitle: "Preview themes, colors and icon styles", icon: "paintpalette.fill", accent: Color.pink)
                         }.buttonStyle(.plain)
                         NavigationLink { CompatibilityView() } label: {
