@@ -11,7 +11,7 @@ targets:
     type: application
     platform: iOS
     sources:
-      - path: iOS/TweaksBar
+      - iOS/TweaksBar/**/*.swift
     info:
       properties:
         CFBundleDisplayName: TweaksBar
@@ -31,11 +31,9 @@ targets:
     type: application
     platform: iOS
     sources:
-      - path: iOS/TweaksSettings
-        excludes:
-          - Build/**
-          - Assets/AppIcon.svg
-          - Assets.xcassets/**/AppIcon.svg
+      - iOS/TweaksSettings/**/*.swift
+      - iOS/TweaksSettings/compatibility-catalog.json
+      - iOS/TweaksSettings/Assets.xcassets
     info:
       properties:
         CFBundleDisplayName: TweaksSettings
