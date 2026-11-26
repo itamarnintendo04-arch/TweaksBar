@@ -35,9 +35,13 @@ targets:
         excludes:
           - Build/**
           - Assets/AppIcon.svg
+          - Assets.xcassets/**/AppIcon.svg
     info:
       properties:
         CFBundleDisplayName: TweaksSettings
+        NSLocalNetworkUsageDescription: "TweaksSettings uses your local network to discover a TweaksBar engine on your trusted network."
+        NSBonjourServices:
+          - _tweaksbar._tcp
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: net.itamaros.tweakssettings
